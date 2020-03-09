@@ -1,0 +1,36 @@
+{
+  "name": "express-mongodb",
+  "version": "1.0.0",
+  "description": "expressjs docker with mongodb",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mocha": "^7.0.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.8.11",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "expressjs",
+    "docker",
+    "monggodb"
+  ],
+  "author": "firmanjs",
+  "license": "ISC"
+}

@@ -1,0 +1,79 @@
+'use strict'
+
+exports.Handler404 = (req,res) => {
+    const err = process.env.APP_ENV == 'development' ? new Error() : {};
+    res.status(404).json({
+        error: err.stack,
+        status: 404,
+        msg: `Route : ${req.url} Not found.`
+    });
+}
+
+exports.Handler500 = (req,res) => {
+    const err = process.env.APP_ENV == 'development' ? new Error() : {};
+    res.status(500).json({
+        error: err.stack,
+        status: 500
+    });
+};
+
+exports.SuccessResponse = (res,data,current=null,pages=null,count=null) => {
+    return res.status(200).json({
+        message: `Get data successfull`,
+        status: `success`,
+        data : data,
+        current:1,
+        page:current,
+        totalPages:pages,
+        countPerPage:data.length,
+        countTotal:count
+    });
+}
+
+exports.CreateResponse = (res,data) => {
+    return res.status(200).json({
+        message: `Create data successfull`,
+        status: `success`,
+        data : data
+    });
+}
+
+exports.GetResponse = (res,data) => {
+    return res.status(200).json({
+        message: `Get detail data successfull`,
+        status: `success`,
+        data : data
+    });
+}
+
+exports.UpdateResponse = (res,data) => {
+    return res.status(200).json({
+        message: `Update data successfull`,
+        status: `success`,
+        data : data
+    });
+}
+
+exports.DeleteResponse = (res,data) => {
+    return res.status(200).json({
+        message: `Delete data successfull`,
+        status: `success`,
+        data : data
+    });
+}
+
+exports.NotFoundResponse = (res) => {
+    return res.status(404).json({
+        message: `Data not found`,
+        status: `empty`,
+        data : []
+    });
+}
+
+exports.ErrorResponse = (res,msg) => {
+    return res.status(500).json({
+        message: `Internal Server Error. ${msg}`,
+        status: `error`,
+        data : []
+    });
+}

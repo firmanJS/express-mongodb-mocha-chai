@@ -1,0 +1,58 @@
+stages:
+  - versioning
+  - test_code
+  - code_quality
+
+versioning:
+  image: alpine:latest
+  stage: versioning
+  before_script:
+    - apk add git
+  script:
+    - export VERSION=$(git describe --tags)
+    - echo $VERSION > version
+    - cat version
+  artifacts:
+    paths:
+      - version
+
+unit_test:
+  image: node:12-alpine
+  stage: test_code
+  only:
+    - master
+  script:
+    - npm install --progress=false
+    - npm run test
+  artifacts:
+    untracked: false
+    expire_in: 7 days
+    paths:
+      - test/unit/coverage/
+
+code_quality:
+  image: docker:stable
+  stage: code_quality
+  only:
+    - master
+  variables:
+    DOCKER_DRIVER: overlay2
+    SP_VERSION: 0.85.5
+  allow_failure: true
+  services:
+    - docker:19.03.5-dind
+  dependencies:
+    - versioning
+  before_script:
+    - export VERSION=$(cat ./version)
+  script:
+    - docker run
+        --env SOURCE_CODE="$PWD"
+        --volume "$PWD":/code
+        --volume /var/run/docker.sock:/var/run/docker.sock
+        "registry.gitlab.com/gitlab-org/security-products/codequality:$SP_VERSION" /code
+  artifacts:
+    paths: [gl-code-quality-report.json]
+    reports:
+      codequality: gl-code-quality-report.json
+    expire_in: 1 week
