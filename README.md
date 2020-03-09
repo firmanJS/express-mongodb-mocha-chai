@@ -15,7 +15,7 @@ cp .env-sample .env
 ```sh
 npm install
 
-npm runstart
+npm run start
 ```
 
 `fill in the copied environment earlier`
