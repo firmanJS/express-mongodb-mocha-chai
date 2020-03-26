@@ -21,28 +21,19 @@ exports.Get = async (req, res) => {
 }
 
 exports.Create = async (req, res) => {
-  if (req.body instanceof Array){
-    Product.create(req.body)
-    .then(result => {
-      Msg.CreateResponse(res,result)
-    }).catch(err => {
-      Msg.ErrorResponse(res,err.message)
-    })
-  }else{
-    const product = new Product(req.body);
-    product.save()
-    .then(result => {
-      Msg.CreateResponse(res,result)
-    }).catch(err => {
-      Msg.ErrorResponse(res,err.message)
-    })
-  }
+  const product = new Product(req.body);
+  product.save()
+  .then(result => {
+    Msg.msgResponse(res,'Create',result)
+  }).catch(err => {
+    Msg.ErrorResponse(res,err.message)
+  })
 };
 
 exports.GetById = async (req, res) => {
   Product.findById(req.params.id)
   .then(result => {
-    Msg.GetResponse(res,result)
+    Msg.msgResponse(res,'Get detail',result)
   }).catch(err => {
     Msg.ErrorResponse(res,err.message)
   })
@@ -51,7 +42,7 @@ exports.GetById = async (req, res) => {
 exports.Put = async (req, res) => {
   Product.findByIdAndUpdate(req.params.id, { $set: req.body },{ new: true })
   .then(result => {
-    Msg.UpdateResponse(res,result)
+    Msg.msgResponse(res,'Update',result)
   }).catch(err => {
     Msg.ErrorResponse(res,err.message)
   })
@@ -60,7 +51,7 @@ exports.Put = async (req, res) => {
 exports.Delete = async (req, res) => {
   Product.findByIdAndRemove(req.params.id)
   .then(result => {
-    Msg.DeleteResponse(res,result)
+    Msg.msgResponse(res,result)
   }).catch(err => {
     Msg.ErrorResponse(res,err.message)
   })
