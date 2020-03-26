@@ -30,33 +30,9 @@ exports.SuccessResponse = (res,data,current=null,pages=null,count=null) => {
     });
 }
 
-exports.CreateResponse = (res,data) => {
+exports.msgResponse = (res,msg,data) => {
     return res.status(200).json({
-        message: `Create data successfull`,
-        status: `success`,
-        data : data
-    });
-}
-
-exports.GetResponse = (res,data) => {
-    return res.status(200).json({
-        message: `Get detail data successfull`,
-        status: `success`,
-        data : data
-    });
-}
-
-exports.UpdateResponse = (res,data) => {
-    return res.status(200).json({
-        message: `Update data successfull`,
-        status: `success`,
-        data : data
-    });
-}
-
-exports.DeleteResponse = (res,data) => {
-    return res.status(200).json({
-        message: `Delete data successfull`,
+        message: `${msg} data successfull`,
         status: `success`,
         data : data
     });
