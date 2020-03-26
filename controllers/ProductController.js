@@ -1,11 +1,9 @@
 const Product = require('../models/ProductModel'),
 Msg = require('../helper/Exception'),
-pagination = require('../helper/Pagination'),
-moment = require('moment');
+pagination = require('../helper/Pagination')
 
 exports.Get = async (req, res) => {
   const where = pagination.Where(req),
-  search = pagination.Search(req),
   sort = pagination.Sort(req), limit = 5, 
   page  = parseInt(pagination.Page(req));
   Product
@@ -16,10 +14,6 @@ exports.Get = async (req, res) => {
   .then(async result => {
     const count = await Product.estimatedDocumentCount(),
     countPerPage = Math.ceil(count / limit);
-    result = result.map(item => {
-      item.createdAt = moment(new Date(item.createdAt).getTime()).format("DD-MM-YYYY h:mm:ss")
-      return item
-    });
     Msg.SuccessResponse(res,result,page,countPerPage,count)
   }).catch(err => {
     Msg.ErrorResponse(res,err.message)

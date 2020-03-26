@@ -14,7 +14,7 @@ services:
     ports:
       - "${APP_PORT}:${APP_PORT}"
     depends_on:
-      - mongodb
+      - mongose
 
   mongose:
     image: mongo:latest
@@ -35,7 +35,7 @@ services:
       ME_CONFIG_BASICAUTH_USERNAME: ${ME_CONFIG_BASICAUTH_USERNAME}
       ME_CONFIG_BASICAUTH_PASSWORD: ${ME_CONFIG_BASICAUTH_PASSWORD}
     links:
-      - mongodb
+      - mongose
     restart: always
     networks:
       - express_monggose
