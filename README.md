@@ -1,16 +1,16 @@
 # Boilerplate express mongodb
 
-### this app for the Boilerplate express mongodb
+### This app for the Boilerplate express mongodb
 
 ### How To run
 
-`copy environment variable`
+#### Copy environment variable
 
 ```sh
 cp .env-sample .env
 ```
 
-* run manualy
+#### Run manualy via npm
 
 ```sh
 npm install
@@ -18,7 +18,7 @@ npm install
 npm run start
 ```
 
-`fill in the copied environment earlier`
+#### Fill in the copied environment earlier
 
 ```sh
 #MONGO SETUP
@@ -42,21 +42,21 @@ JWT_SECRET= # jwt secret key name here
 APP_ENV=development
 ```
 
-`run with docker-compose`
+#### Run with docker-compose
 
 ```sh
 docker-compose up --build
 ```
 
-or run with background process
+#### Or run with background process
 
 ```sh
 docker-compose up --build -d
 ```
 
-`run unit testing`
+#### Run unit testing
 ```sh
 docker-compose exec apps npm run test
 ```
 
-## enjoy 
+## Enjoy :yum:
