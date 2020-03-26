@@ -1,12 +1,11 @@
 'use strict'
 require('dotenv').config()
-const dbUrl = 'mongodb://'+process.env.MONGO_ROOT_USER+':'+process.env.MONGO_ROOT_PASSWORD+'@mongodb/?authSource=admin',
 mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
 exports.connectWithRetry = function() {
-  return mongoose.connect(dbUrl, { 
+  return mongoose.connect(process.env.MONGO_DB_URI, { 
     useNewUrlParser: true, 
     useCreateIndex: true,
     useFindAndModify: false,

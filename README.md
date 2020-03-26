@@ -21,16 +21,21 @@ npm run start
 `fill in the copied environment earlier`
 
 ```sh
-MONGO_DATA_DIR= #mongodb directory
-MONGO_LOG_DIR= #mongodb directory log
-MONGO_DB=expressMongoDB
-MONGO_ROOT_USER= #mongodb root user
-MONGO_ROOT_PASSWORD= #mongodb root password
-MONGOEXPRESS_LOGIN= #mongodb like phpmyadmin login
-MONGOEXPRESS_PASSWORD= #mongodb like phpmyadmin password
+#MONGO SETUP
+MONGO_DB_URI=mongose://mongodb:27017/mocha-chai # URL MONGOSE
+MONGO_INITDB_ROOT_USERNAME= # username
+MONGO_INITDB_ROOT_PASSWORD= # password
 MONGODB_PORT=27017
-MONGO_EXPRESS_PORT_SECURE=8888
-MONGO_EXPRESS_PORT_UNSECURE=8081
+
+#auth mongoDB Management
+ME_CONFIG_MONGODB_SERVER=mongose
+ME_CONFIG_BASICAUTH_USERNAME=# username
+ME_CONFIG_BASICAUTH_PASSWORD=# password
+ME_CONFIG_MONGODB_PORT=8081
+
+#image docker
+MNG_DATABASE=mongo-express
+MNG_DB=mongose
 
 APP_PORT=3000
 JWT_SECRET= # jwt secret key name here
@@ -51,7 +56,7 @@ docker-compose up --build -d
 
 `run unit testing`
 ```sh
-docker-compose exec service_nodejs npm run test
+docker-compose exec apps npm run test
 ```
 
 ## enjoy 
