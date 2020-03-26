@@ -1,57 +1,49 @@
-version: '2'
+version: '3'
 services:
 
-  service_nodejs:
+  apps:
     build:
       context: .
       dockerfile: Dockerfile
-    networks: 
-      express_monggo:
+    networks:
+      express_monggose:
     restart: always
     volumes:
-      - ./:/app
-      - /app/node_modules
+      - ./:/apps
+      - /apps/node_modules
     ports:
       - "${APP_PORT}:${APP_PORT}"
-    depends_on: 
+    depends_on:
       - mongodb
 
-  mongodb:
+  mongose:
     image: mongo:latest
-    container_name: "mongodb"
-    networks: 
-      express_monggo:
-    environment:
-      - MONGO_DATA_DIR=${MONGO_DATA_DIR}
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
-      - MONGO_LOG_DIR=${MONGO_LOG_DIR}
+    networks:
+      express_monggose:
     volumes:
-      - express_mongo_db_vol:/var/lib/mongodb/data
+      - mongodb_apps:/data/db
+      - mongodb_apps_config:/data/configdb
     ports:
       - ${MONGODB_PORT}:${MONGODB_PORT}
 
-  # mongo express like phpmyadmin
-  # mongo-express:
-  #   image: mongo-express
-  #   environment:
-  #     - ME_CONFIG_MONGODB_SERVER=mongodb
-  #     - ME_CONFIG_MONGODB_PORT=${MONGODB_PORT}
-  #     - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
-  #     - ME_CONFIG_MONGODB_AUTH_DATABASE=${MONGO_DB}
-  #     - ME_CONFIG_MONGODB_AUTH_USERNAME=${MONGO_ROOT_USER}
-  #     - ME_CONFIG_MONGODB_AUTH_PASSWORD=${MONGO_ROOT_PASSWORD}
-  #     - ME_CONFIG_BASICAUTH_USERNAME=${MONGOEXPRESS_LOGIN}
-  #     - ME_CONFIG_BASICAUTH_PASSWORD=${MONGOEXPRESS_PASSWORD}
-  #   depends_on:
-  #     - mongodb
-  #   networks:
-  #     express_monggo:
-  #   ports:
-  #     - "${MONGO_EXPRESS_PORT_SECURE}:${MONGO_EXPRESS_PORT_UNSECURE}"
+  mongo-express:
+    image: ${MNG_DATABASE}
+    ports:
+      - ${ME_CONFIG_MONGODB_PORT}:${ME_CONFIG_MONGODB_PORT}
+    environment:
+      ME_CONFIG_MONGODB_SERVER: ${ME_CONFIG_MONGODB_SERVER}
+      ME_CONFIG_BASICAUTH_USERNAME: ${ME_CONFIG_BASICAUTH_USERNAME}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${ME_CONFIG_BASICAUTH_PASSWORD}
+    links:
+      - mongodb
+    restart: always
+    networks:
+      - express_monggose
 
 networks:
-  express_monggo:
+  express_monggose:
+    driver: bridge
 
-volumes: 
-  express_mongo_db_vol:
+volumes:
+  mongodb_apps:
+  mongodb_apps_config:

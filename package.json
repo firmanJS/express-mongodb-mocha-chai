@@ -1,7 +1,7 @@
 {
   "name": "express-mongodb",
   "version": "1.0.0",
-  "description": "expressjs docker with mongodb",
+  "description": "expressjs docker with mongodb and unit testing mocha chai",
   "main": "server.js",
   "directories": {
     "test": "test"
@@ -29,8 +29,10 @@
   "keywords": [
     "expressjs",
     "docker",
-    "monggodb"
+    "monggodb",
+    "docker-compose",
+    "mocha","chai","unit testing"
   ],
-  "author": "firmanjs",
+  "author": "@firmanjs",
   "license": "ISC"
 }
