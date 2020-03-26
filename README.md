@@ -2,6 +2,10 @@
 
 ### This app for the Boilerplate express mongodb
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/dfb2ca2f2e1db6fdfab2/maintainability)](https://codeclimate.com/github/firmanJS/express-mongodb-mocha-chai/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/dfb2ca2f2e1db6fdfab2/test_coverage)](https://codeclimate.com/github/firmanJS/express-mongodb-mocha-chai/test_coverage)
+
 ### How To run
 
 #### Copy environment variable
