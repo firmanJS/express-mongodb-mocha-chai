@@ -3,8 +3,8 @@
 ### This app for the Boilerplate express mongodb
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/dfb2ca2f2e1db6fdfab2/maintainability)](https://codeclimate.com/github/firmanJS/express-mongodb-mocha-chai/maintainability)
-
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dfb2ca2f2e1db6fdfab2/test_coverage)](https://codeclimate.com/github/firmanJS/express-mongodb-mocha-chai/test_coverage)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/232af6534921479f8212b79dfbe6db2b)](https://www.codacy.com/manual/firmanJS/express-mongodb-mocha-chai?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=firmanJS/express-mongodb-mocha-chai&amp;utm_campaign=Badge_Grade)
 
 ### How To run
 
