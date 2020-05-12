@@ -20,6 +20,8 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-config-google": "^0.14.0",
     "supertest": "^4.0.2"
   },
   "scripts": {
@@ -31,7 +33,9 @@
     "docker",
     "monggodb",
     "docker-compose",
-    "mocha","chai","unit testing"
+    "mocha",
+    "chai",
+    "unit testing"
   ],
   "author": "@firmanjs",
   "license": "ISC"

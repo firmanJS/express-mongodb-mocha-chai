@@ -1,19 +1,19 @@
-'use strict'
-let app = require('./config/app');
-let debug = require('debug')('api-class:server');
-let http = require('http');
+'use strict';
+const app = require('./config/app');
+const debug = require('debug')('api-class:server');
+const http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-let port = normalizePort(process.env.APP_PORT || process.env.APP_PORT);
+const port = normalizePort(process.env.APP_PORT || process.env.APP_PORT);
 
 /**
  * Create HTTP server.
  */
 
-let server = http.createServer(app);
+const server = http.createServer(app);
 console.log('Server ExpressJS is running ...');
 console.log('You use port : ' + process.env.APP_PORT);
 
