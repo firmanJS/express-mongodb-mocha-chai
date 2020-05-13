@@ -1,5 +1,5 @@
-'use strict'
-require('dotenv').config()
+'use strict';
+require('dotenv').config();
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
@@ -8,13 +8,13 @@ exports.connectWithRetry = function() {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   }, function(err) {
     if (err) {
-      console.error('Failed to connect to mongo on startup - retrying in 5 sec', err)
-      setTimeout(connectWithRetry(), 5000)
+      console.error('Failed to connect to mongo', err);
+      setTimeout(connectWithRetry(), 5000);
     } else {
-      console.log("mongoDB Connected ✅")
+      console.log('mongoDB Connected ✅');
     }
-  })
-}
+  });
+};

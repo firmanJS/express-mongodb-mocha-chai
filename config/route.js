@@ -1,6 +1,6 @@
 'use strict';
-const express = require('express'), routing = express(),
-product = require('../routes/ProductRoute');
+const express = require('express'); const routing = express();
+const product = require('../routes/ProductRoute');
 
 routing.use(product);
 

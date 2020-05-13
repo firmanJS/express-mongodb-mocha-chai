@@ -17,7 +17,7 @@ exports.Handler500 = (req,res) => {
     });
 };
 
-exports.SuccessResponse = (res,data,current=null,pages=null,count=null) => {
+exports.SuccessResponse = (res, data, current=null,pages=null,count=null) => {
     return res.status(200).json({
         message: `Get data successfull`,
         status: `success`,

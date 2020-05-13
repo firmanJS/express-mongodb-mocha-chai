@@ -18,7 +18,7 @@ exports.Get = async (req, res) => {
   }).catch(err => {
     Msg.ErrorResponse(res,err.message)
   })
-}
+} 
 
 exports.Create = async (req, res) => {
   const product = new Product(req.body);

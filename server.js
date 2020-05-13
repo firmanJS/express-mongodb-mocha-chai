@@ -4,33 +4,11 @@ const debug = require('debug')('api-class:server');
 const http = require('http');
 
 /**
- * Get port from environment and store in Express.
- */
-
-const port = normalizePort(process.env.APP_PORT || process.env.APP_PORT);
-
-/**
- * Create HTTP server.
- */
-
-const server = http.createServer(app);
-console.log('Server ExpressJS is running ...');
-console.log('You use port : ' + process.env.APP_PORT);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-/**
  * Normalize a port into a number, string, or false.
- */
+*/
 
-function normalizePort(val) {
-  let port = parseInt(val, 10);
+const normalizePort = (val) => {
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -43,20 +21,18 @@ function normalizePort(val) {
   }
 
   return false;
-}
+};
 
 /**
  * Event listener for HTTP server "error" event.
- */
+*/
 
-function onError(error) {
+const onError = (error) => {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  let bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -71,16 +47,33 @@ function onError(error) {
     default:
       throw error;
   }
-}
+};
 
 /**
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
-  let addr = server.address();
-  let bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+const onListening = () => {
+  const addr = server.address();
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   debug('Listening on ' + bind);
-}
+};
+
+/**
+ * Get port from environment and store in Express.
+*/
+const port = normalizePort(process.env.APP_PORT || process.env.APP_PORT);
+
+/**
+ * Create HTTP server.
+*/
+const server = http.createServer(app);
+console.log('Server ExpressJS is running ...');
+console.log('You use port : ' + process.env.APP_PORT);
+
+/**
+ * Listen on provided port, on all network interfaces.
+*/
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
