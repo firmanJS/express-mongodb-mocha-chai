@@ -1,6 +1,7 @@
-const express = require('express') ,
-product = require('../controllers/ProductController'),
-router = express.Router()
+const express = require('express');
+const product = require('../controllers/ProductController');
+// eslint-disable-next-line new-cap
+const router = express.Router();
 
 router.get('/product', product.Get);
 router.post('/product', product.Create);
